@@ -107,8 +107,8 @@ export class Character {
   		let r = 10;
   		let a = 0.3;
 
-		let future_location = this.velocity;
-		future_location.setLength(d);
+		let future_location = this.location.clone();
+		future_location.add(this.velocity.clone().setLength(d));
 		let wanderAngle = a- 2*a * Math.random();
 		let targetAngle = wanderAngle + Math.atan2(this.velocity.x, this.velocity.z);
 
