@@ -8,6 +8,11 @@ export class Character {
 		let coneGeo = new THREE.ConeGeometry(0.5, 1, 10);
 		let coneMat = new THREE.MeshStandardMaterial({color: mColor});
 		
+		let boxGeo = new THREE.BoxGeometry(1, 1, 1);
+		let boxMat = new THREE.MeshStandardMaterial({color: 0x00ff00});
+
+		this.targetMesh = new THREE.Mesh(boxGeo, boxMat);
+
 		// Create the local cone mesh (of type Object3D)
 		let mesh = new THREE.Mesh(coneGeo, coneMat);
 		// Increment the y position so our cone is just atop the y origin
@@ -113,7 +118,7 @@ export class Character {
 		let targetAngle = wanderAngle + Math.atan2(this.velocity.x, this.velocity.z);
 
 		let target_location = future_location.clone().add(new THREE.Vector3(r*Math.sin(targetAngle), 0, r*Math.cos(targetAngle)));
-
+		this.targetMesh.position.set(target_location.x, target_location.y, target_location.z);
 		return target_location;
   	}
 
